@@ -12,8 +12,10 @@
  *   deflating. (A value != 8 makes the code create a subdirectory, so I guess
  *   it's for handling a directory structure inside the archive. mvme doesn't
  *   use this feature at the moment.)
+ * - Add usage and fix crash when the input file can not be opened.
  */
 
+#include <errno.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
@@ -60,6 +62,14 @@ int main(int argc, char *argv[])
     }
 
 	FILE *fh = fopen(argv[1], "rb");
+
+    if (!fh)
+    {
+        printf("Error opening input file '%s' for reading: %s.\n",
+                argv[1], strerror(errno));
+        return 1;
+    }
+
 	FILE *ofh;
 	lfh header;
 	dd des;
