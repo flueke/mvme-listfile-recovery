@@ -12,7 +12,7 @@
  *   deflating. (A value != 8 makes the code create a subdirectory, so I guess
  *   it's for handling a directory structure inside the archive. mvme doesn't
  *   use this feature at the moment.)
- * - Add usage and fix crash when the input file can not be opened.
+ * - Add usage and fix crash when the input file cannot be opened.
  */
 
 #include <errno.h>
@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
         // it didn't matter as the deflate code stopped producing data once the
         // input was fully decompressed (I noticed the output file size not
         // growing anymore after a certain max size was reached. At that point
-        // I just killed he process.
+        // I just killed the process.
 
         //printf("Got header compression=%u, crc=0x%08x, csize=%u, usize=%u\n",
         //        header.compression, header.crc32, header.compressedsize, header.uncompressedsize);
